@@ -15,8 +15,27 @@ export class CustomColumnComponent implements OnInit {
 
   private api: GridApi;
   private columnApi: ColumnApi;
-
-
+  ngOnInit(){
+    console.log("hello world!");
+  }
+  cellstlgx3 = (params)=>{
+    if (params.value< 0) {
+      //mark police cells as red
+      return {color: '#d63031'};
+    } else if (params.value > 0 ){
+      return {color: '#00b894'};
+    }
+  };
+  totalcellstl = (params)=>{
+    if (params.value<= 30) {
+      //mark police cells as red
+      return {color: 'white', backgroundColor: '#d63031'};
+    } else if (params.value > 30 && params.value <= 60)   {
+      return {color: 'white', backgroundColor: "#fdcb6e" ,  };
+    }else{
+      return {color: 'white', backgroundColor: "#00b894" ,};
+    }
+  };
   constructor() {
     this.gridOption = <GridOptions>{
       context: {
@@ -36,9 +55,9 @@ export class CustomColumnComponent implements OnInit {
 */
       {headerName: "Groupe A", field: "groupea" , children:[
           {headerName: "Groupe A1", field: "groupea1" , children:[
-              {headerName: "Groupe A11", field: "groupea11"  },
+              {headerName: "Groupe A11", field: "groupea11" },
               {headerName: "Groupe A12", field: "groupea12" },
-              {headerName: "Groupe A13", field: "groupea13" ,colId: "a11&a12",
+              {headerName: "Groupe_A13", field: "groupea13" ,colId: "g1",cellStyle:this.cellstlgx3,
                 cellClass: "number-cell",
                 valueGetter: function aPlusBValueGetter(params) {
                   return (params.data.groupea12 - params.data.groupea11);
@@ -47,28 +66,34 @@ export class CustomColumnComponent implements OnInit {
           {headerName: "Groupe A2", field: "groupea2" , children:[
               {headerName: "Groupe A21", field: "groupea21" },
               {headerName: "Groupe A22", field: "groupea22" },
-              {headerName: "Groupe A23", field: "groupea23" ,colId: "a21&a22",
+              {headerName: "Groupe A23", field: "groupea23" ,colId: "g2",cellStyle:this.cellstlgx3
                 cellClass: "number-cell",
                 valueGetter: function aPlusBValueGetter(params) {
                 return (params.data.groupea22 - params.data.groupea21);
               }}
             ]},
           {headerName: "Total", field: "groupea3" , children:[
-              {headerName: "total Ax&", field: "groupea31",colId: "a11&a12",
+              {headerName: "total Ax1", field: "groupea31",colId: "a11&a12", columnGroupShow: "open" ,
                 cellClass: "number-cell",
-                valueGetter: function aPlusBValueGetter(params) {
+                valueGetter: function totalaX1(params) {
                   return (params.data.groupea11 + params.data.groupea21);
                 } },
-              {headerName: "Groupe Ax2", field: "groupea32" ,colId: "a12&a22",
+              {headerName: "Groupe Ax2", field: "groupea32" ,colId: "a12&a22",columnGroupShow: "open" ,
                 cellClass: "number-cell",
-                valueGetter: function aPlusBValueGetter(params) {
+                valueGetter: function totalaX2(params) {
                   return (params.data.groupea12 + params.data.groupea22);
                 }},
-              {headerName: "%", field: "groupea33" ,colId: "totoalligne",
+              {headerName: "Group Ax3", field: "groupea33" ,colId: "a13&a23",columnGroupShow: "open",cellStyle:this.cellstlgx3 ,
                 cellClass: "number-cell",
-                valueGetter: function aPlusBValueGetter(params) {
-                return (params.data.groupea31 / params.data.groupea32);
+                valueGetter: function totalaX3(params) {
+
+                 return params.getValue("g1")+params.getValue("g2") ;
               }},
+              {headerName: "%", field: "%" ,colId: "totoalligne",columnGroupShow: "close" , cellStyle :this.totalcellstl;
+                cellClass: "number-cell",
+                valueGetter: function pourcentage(params) {
+                  return (params.getValue("a13&23")%params.getValue("a11&a12"))+100;
+                }}
             ]},
         ]},
 
@@ -81,12 +106,12 @@ export class CustomColumnComponent implements OnInit {
       {groupea11: 34.3,groupea12:67.7  ,groupea21:190.0 ,groupea22:118.4 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
       {groupea11: 34.1,groupea12:46.2 ,groupea21:7.3 ,groupea22:4.4 ,groupea23: 1,groupea31:1 , groupea32: 1, groupea33: 1}
 
-    ]
+    ];
 
   }
 
-  ngOnInit() {
-  }
+
+
 
 
 

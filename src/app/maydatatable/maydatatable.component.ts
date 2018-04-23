@@ -39,16 +39,7 @@ export class MaydatatableComponent implements OnInit {
     {headerName: "Name", field: "name", width: 150, filter: 'text'},
     {headerName: "Country", field: "country", width: 150, filter: 'text'},
     {headerName: "Age", field: "age", width: 150, filter: 'numericColumn'},
-    {headerName: "Score", field: "score", width: 150, filter: 'numericColumn' , cellStyle: function(params){
-        if (params.value<= 30) {
-          //mark police cells as red
-          return {color: 'white', backgroundColor: '#d63031'};
-        } else if (params.value > 30 && params.value <= 60)   {
-            return {color: 'white', backgroundColor: "#fdcb6e"};
-        }else{
-          return {color: 'white', backgroundColor: "#00b894"};
-        }
-      }},
+    {headerName: "Score", field: "score", width: 150 , filter :""},
     {headerName:"Productive" ,children: [
         {headerName: "Tortal", field: "total", width: 150, filter: 'text' ,  columnGroupShow: "close"},
         {headerName: "Number 1", field: "Number 1", width: 150, filter: 'text' ,  columnGroupShow: "open"},
