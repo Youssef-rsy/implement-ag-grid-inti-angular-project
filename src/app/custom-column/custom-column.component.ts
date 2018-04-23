@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ColumnApi, GridApi, GridOptions} from "ag-grid/main";
 import "ag-grid-enterprise";
+import { PercentageCellComponent } from './../percentage-cell/percentage-cell.component';
 
 @Component({
   selector: 'app-custom-column',
@@ -89,7 +90,7 @@ export class CustomColumnComponent implements OnInit {
 
                  return params.getValue("g1")+params.getValue("g2") ;
               }},
-              {headerName: "%", field: "%" ,colId: "totoalligne",columnGroupShow: "close" , cellStyle :this.totalcellstl;
+              {headerName: "%", field: "%" ,colId: "totoalligne",columnGroupShow: "close" , cellRendererFramework: PercentageCellComponent,
                 cellClass: "number-cell",
                 valueGetter: function pourcentage(params) {
                   return (params.getValue("a13&23")%params.getValue("a11&a12"))+100;
