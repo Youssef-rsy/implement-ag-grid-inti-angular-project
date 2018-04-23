@@ -7,12 +7,14 @@ import 'ag-grid-enterprise';
 import {AgGridModule} from 'ag-grid-angular/main';
 import { AppComponent } from './app.component';
 import { MaydatatableComponent } from './maydatatable/maydatatable.component';
+import { CustomColumnComponent } from './custom-column/custom-column.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MaydatatableComponent
+    MaydatatableComponent,
+    CustomColumnComponent
   ],
   imports: [
     BrowserModule,
