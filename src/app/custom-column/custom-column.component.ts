@@ -8,7 +8,7 @@ import "ag-grid-enterprise";
   styleUrls: ['./custom-column.component.css']
 })
 export class CustomColumnComponent implements OnInit {
-
+  // HI THERE
   private gridOption:GridOptions ;
   public rowData: any[];
   public columnDefs: any[];
@@ -54,9 +54,21 @@ export class CustomColumnComponent implements OnInit {
               }}
             ]},
           {headerName: "Total", field: "groupea3" , children:[
-              {headerName: "", field: "groupea31" },
-              {headerName: "Groupe A32", field: "groupea32" },
-              {headerName: "Groupe A33", field: "groupea33" },
+              {headerName: "total Ax&", field: "groupea31",colId: "a11&a12",
+                cellClass: "number-cell",
+                valueGetter: function aPlusBValueGetter(params) {
+                  return (params.data.groupea11 + params.data.groupea21);
+                } },
+              {headerName: "Groupe Ax2", field: "groupea32" ,colId: "a12&a22",
+                cellClass: "number-cell",
+                valueGetter: function aPlusBValueGetter(params) {
+                  return (params.data.groupea12 + params.data.groupea22);
+                }},
+              {headerName: "%", field: "groupea33" ,colId: "totoalligne",
+                cellClass: "number-cell",
+                valueGetter: function aPlusBValueGetter(params) {
+                return (params.data.groupea31 / params.data.groupea32);
+              }},
             ]},
         ]},
 
