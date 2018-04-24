@@ -40,11 +40,11 @@ export class MaydatatableComponent implements OnInit {
     {headerName: "Country", field: "country", width: 150, filter: 'text'},
     {headerName: "Age", field: "age", width: 150, filter: 'numericColumn'},
     {headerName: "Score", field: "score", width: 150 , filter :""},
-    {headerName:"Productive" ,children: [
+   /* {headerName:"Productive" ,children: [
         {headerName: "Tortal", field: "total", width: 150, filter: 'text' ,  columnGroupShow: "close"},
         {headerName: "Number 1", field: "Number 1", width: 150, filter: 'text' ,  columnGroupShow: "open"},
         {headerName: "Number 2", field: "Number 2", width: 150, filter: 'text' ,  columnGroupShow: "open"}
-      ]}
+      ]}*/
    );
 
 
