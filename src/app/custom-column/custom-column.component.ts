@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ColumnApi, GridApi, GridOptions} from "ag-grid/main";
-import "ag-grid-enterprise";
 import { PercentageCellComponent } from './../percentage-cell/percentage-cell.component';
+import "ag-grid-enterprise";
 
 @Component({
   selector: 'app-custom-column',
@@ -56,16 +56,17 @@ export class CustomColumnComponent implements OnInit {
 
 
     this.columnDefs = [
-      {headerName: "", field: "" ,   pinned: true ,children:[
-          {headerName: "Dep", field: "dep" ,  width: 150 ,  pinned: true , },
-          {headerName: "Secteur", field: "secteur" ,  width: 150 ,  pinned: true  },
+
+      {headerName: "" ,children:[
+          {headerName: "Dep",  width: 150 ,  field: "dep",},
+          {headerName: "Secteur",   width: 150 , field: "secteur"},
         ]},
 
       {headerName: "Groupe A", field: "groupea" ,columnGroupShow: "close", children:[
-          {headerName: "Groupe A1", field: "groupea1" ,columnGroupShow: "open",children:[
-              {headerName: "Groupe A11", field: "groupea11" ,columnGroupShow: "open",headerClass: "resizable-header" ,  },
-              {headerName: "Groupe A12", field: "groupea12" ,columnGroupShow: "open" ,  },
-              {headerName: "Groupe_A13", field: "groupea13" ,columnGroupShow: "open",colId: "g1",cellStyle:this.cellstlgx3,
+          {headerName: "Groupe A1", field: "groupea1",columnGroupShow: "open" ,children:[
+              {headerName: "Groupe A11", field: "groupea11" ,columnGroupShow: "open",headerClass: "resizable-header" ,  aggFunc: "sum",},
+              {headerName: "Groupe A12", field: "groupea12" ,columnGroupShow: "open" , aggFunc: "sum", },
+              {headerName: "Groupe_A13", field: "groupea13" ,columnGroupShow: "open",colId: "g1",cellStyle:this.cellstlgx3,aggFunc: "sum",
                 cellClass: "number-cell",
                 valueGetter: function aPlusBValueGetter(params) {
                   return (params.data.groupea12 - params.data.groupea11);
@@ -104,7 +105,7 @@ export class CustomColumnComponent implements OnInit {
                 }}
             ]},
         ]},
-      {headerName: "", field: ""},
+      /*{headerName: "", field: ""},
       {headerName: "Groupe A", field: "groupea" ,columnGroupShow: "close",  children:[
           {headerName: "Groupe A1", field: "groupea1" ,columnGroupShow: "open", children:[
               {headerName: "Groupe A11", field: "groupea11" ,columnGroupShow: "open",headerClass: "resizable-header"},
@@ -149,11 +150,18 @@ export class CustomColumnComponent implements OnInit {
             ]},
         ]},
 
-
+*/
 
 
   ];
 
+    this.autoGroupColumnDef = {
+      filterValueGetter: function(params) {
+        var colGettingGrouped = params.colDef.showRowGroup;
+        var valueForOtherCol = params.api.getValue(colGettingGrouped, params.node);
+        return valueForOtherCol;
+      }
+    };
 
     this.rowData = [
       {dep:"Dep1" , secteur:"secteur 1" ,groupea11: 0.0,groupea12:0.0 ,groupea21:0.4 ,groupea22:49.6 ,groupea23:1 ,groupea31:1 , groupea32:1 , groupea33:1 },

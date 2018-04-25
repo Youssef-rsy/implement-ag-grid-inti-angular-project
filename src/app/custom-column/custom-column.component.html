@@ -4,7 +4,13 @@
                      id="myGrid"
                      class="ag-theme-balham"
                      [columnDefs]="columnDefs"  [rowData]="rowData"
-                     [defaultColDef]="defaultColDef"  [enableColResize]="true"
+                     [defaultColDef]="defaultColDef"
+                     [groupSuppressAutoColumn]="true"
+                     [enableRangeSelection]="true"
+                     [groupHideOpenParents]="true"
+                     [animateRows]="true"
+                     [enableColResize]="true"
+                     [enableSorting]="true"
     >
           Loading ....
     </ag-grid-angular>

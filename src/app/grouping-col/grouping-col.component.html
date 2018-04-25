@@ -1,0 +1,14 @@
+`<ag-grid-angular
+  #agGrid
+  style="width: 100%; height: 100%;"
+  id="myGrid"
+  class="ag-theme-balham"
+  [columnDefs]="columnDefs"
+  [groupIncludeFooter]="true"
+  [enableSorting]="true"
+  [showToolPanel]="true"
+  [toolPanelSuppressPivots]="true"
+  [toolPanelSuppressPivotMode]="true"
+  [autoGroupColumnDef]="autoGroupColumnDef"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>
