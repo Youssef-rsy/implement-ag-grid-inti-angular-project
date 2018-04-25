@@ -15,7 +15,7 @@ export class CustomColumnComponent implements OnInit {
   public columnDefs: any[];
 
   public defaultColDef;
-  private autoGroupColumnDef;
+  public autoGroupColumnDef;
 
   private api: GridApi;
   private columnApi: ColumnApi;
@@ -50,19 +50,21 @@ export class CustomColumnComponent implements OnInit {
     onGridReady:(params)=>{
       this.api = params.api;
       this.columnApi = params.columnApi;
+      //get data /json data
       }
     };
 
+
     this.columnDefs = [
-      {headerName: "", field: "" , children:[
-          {headerName: "Dep", field: "dep" ,  width: 150, pinned: true},
-          {headerName: "Secteur", field: "secteur" ,  width: 150, pinned: true },
+      {headerName: "", field: "" ,   pinned: true ,children:[
+          {headerName: "Dep", field: "dep" ,  width: 150 ,  pinned: true , },
+          {headerName: "Secteur", field: "secteur" ,  width: 150 ,  pinned: true  },
         ]},
 
       {headerName: "Groupe A", field: "groupea" ,columnGroupShow: "close", children:[
-          {headerName: "Groupe A1", field: "groupea1" ,columnGroupShow: "open", children:[
-              {headerName: "Groupe A11", field: "groupea11" ,columnGroupShow: "open",headerClass: "resizable-header"},
-              {headerName: "Groupe A12", field: "groupea12" ,columnGroupShow: "open"},
+          {headerName: "Groupe A1", field: "groupea1" ,columnGroupShow: "open",children:[
+              {headerName: "Groupe A11", field: "groupea11" ,columnGroupShow: "open",headerClass: "resizable-header" ,  },
+              {headerName: "Groupe A12", field: "groupea12" ,columnGroupShow: "open" ,  },
               {headerName: "Groupe_A13", field: "groupea13" ,columnGroupShow: "open",colId: "g1",cellStyle:this.cellstlgx3,
                 cellClass: "number-cell",
                 valueGetter: function aPlusBValueGetter(params) {
@@ -154,10 +156,13 @@ export class CustomColumnComponent implements OnInit {
 
 
     this.rowData = [
-      {groupea11: 0.0,groupea12:0.0 ,groupea21:0.4 ,groupea22:49.6 ,groupea23:1 ,groupea31:1 , groupea32:1 , groupea33:1 },
-      {groupea11: 0.5,groupea12:0.0 ,groupea21:0.0 ,groupea22:0.0 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
-      {groupea11: 34.3,groupea12:67.7  ,groupea21:190.0 ,groupea22:118.4 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
-      {groupea11: 34.1,groupea12:46.2 ,groupea21:7.3 ,groupea22:4.4 ,groupea23: 1,groupea31:1 , groupea32: 1, groupea33: 1}
+      {dep:"Dep1" , secteur:"secteur 1" ,groupea11: 0.0,groupea12:0.0 ,groupea21:0.4 ,groupea22:49.6 ,groupea23:1 ,groupea31:1 , groupea32:1 , groupea33:1 },
+      {dep:"Dep1" , secteur:"secteur 2" ,groupea11: 0.5,groupea12:0.0 ,groupea21:0.0 ,groupea22:0.0 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
+      {dep:"Dep1" , secteur:"secteur 3" ,groupea11: 314.3,groupea12:67.7  ,groupea21:190.0 ,groupea22:118.4 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
+      {dep:"Dep2" , secteur:"secteur 21" ,groupea11: 205.0,groupea12:0.0 ,groupea21:0.4 ,groupea22:49.6 ,groupea23:1 ,groupea31:1 , groupea32:1 , groupea33:1 },
+      {dep:"Dep2" , secteur:"secteur 21" ,groupea11: 0.5,groupea12:0.0 ,groupea21:800.0 ,groupea22:50.0 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
+      {dep:"Dep3" , secteur:"secteur 31" ,groupea11: 334.3,groupea12:67.7  ,groupea21:190.0 ,groupea22:118.4 ,groupea23:1 ,groupea31: 1, groupea32: 1, groupea33: 1},
+      {dep:"Dep3" , secteur:"secteur 32" ,groupea11: 34.1,groupea12:460.2 ,groupea21:7.3 ,groupea22:4.4 ,groupea23: 1,groupea31:1 , groupea32: 1, groupea33: 1}
 
     ];
 

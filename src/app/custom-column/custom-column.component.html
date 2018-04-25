@@ -1,5 +1,11 @@
 <div>
-    <ag-grid-angular #agGrid [columnDefs]="columnDefs"  [rowData]="rowData" style="width: 100% ; height:300px;"  class="ag-theme-balham"  [defaultColDef]="defaultColDef" >
+    <ag-grid-angular #agGrid
+                     style="width: 100%; height: 500px;"
+                     id="myGrid"
+                     class="ag-theme-balham"
+                     [columnDefs]="columnDefs"  [rowData]="rowData"
+                     [defaultColDef]="defaultColDef"  [enableColResize]="true"
+    >
           Loading ....
     </ag-grid-angular>
 </div>
